@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.env
+fraud.db
+*.db
+.DS_Store
+node_modules/
