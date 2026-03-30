@@ -196,7 +196,7 @@
   const API = "https://frauddetection-platform-production.up.railway.app"; // ← UPDATE THIS after deployment
   // For local dev use: const API = "http://127.0.0.1:8000";
 
-  let token = localStorage.getItem("fraud_token") || "";
+  let token ="";
   let currentTab = "login";
   let pieChart, barChart;
   let lastReports = {};
@@ -241,7 +241,6 @@
       if (!res.ok) { errEl.textContent = data.detail || "Login failed."; return; }
 
       token = data.access_token;
-      localStorage.setItem("fraud_token", token);
       document.getElementById("authScreen").style.display = "none";
       document.getElementById("app").style.display = "block";
       document.getElementById("welcomeUser").textContent = `👤 ${username}`;
@@ -253,7 +252,7 @@
 
   function logout() {
     token = "";
-    localStorage.removeItem("fraud_token");
+    
     document.getElementById("authScreen").style.display = "flex";
     document.getElementById("app").style.display = "none";
   }
@@ -264,11 +263,8 @@
 
   // Auto-login if token exists
   window.onload = () => {
-    if (token) {
-      document.getElementById("authScreen").style.display = "none";
-      document.getElementById("app").style.display = "block";
-      loadData();
-    }
+    document.getElementById("authScreen").style.display = "flex";
+    document.getElementById("app").style.display = "none";
   };
 
   // ── DATA ────────────────────────────────────────────────
